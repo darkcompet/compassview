@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="north">Phía bắc</string>
+	<string name="west">Phía tây</string>
+	<string name="south">Phía nam</string>
+	<string name="east">Phía đông</string>
+	<string name="degrees">Góc</string>
+	<string name="n">B</string>
+	<string name="s">N</string>
+	<string name="w">T</string>
+	<string name="e">Đ</string>
+</resources>

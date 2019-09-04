@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="north">North</string>
+	<string name="west">West</string>
+	<string name="south">South</string>
+	<string name="east">East</string>
+	<string name="degrees">Degrees</string>
+	<string name="n">N</string>
+	<string name="s">S</string>
+	<string name="w">W</string>
+	<string name="e">E</string>
+</resources>

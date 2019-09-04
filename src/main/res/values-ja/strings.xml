@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="north">北</string>
+	<string name="west">西</string>
+	<string name="south">南</string>
+	<string name="east">東</string>
+	<string name="degrees">角度</string>
+	<string name="n">北</string>
+	<string name="s">南</string>
+	<string name="w">西</string>
+	<string name="e">東</string>
+</resources>
