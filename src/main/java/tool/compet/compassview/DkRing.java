@@ -18,52 +18,59 @@ package tool.compet.compassview;
 
 import java.util.List;
 
-import static java.lang.Character.LOWERCASE_LETTER;
 import static java.lang.Character.UPPERCASE_LETTER;
 
 public class DkRing {
-	public static final int DEFAULT_WORD_FONT_SIZE = 12;
+	/**
+	 * Value true means this ring is visible, otherwise means this ring should be gone
+	 */
+	public boolean isVisible = true;
 
-	/** This ring will be visible or gone */
-	private boolean isVisible = true;
+	/**
+	 * Clockwise rotated angle in degrees.
+	 */
+	public float rotatedDegrees;
 
-	/** This ring will be rotated with a degrees */
-	private float rotatedDegrees;
+	/**
+	 * Name of ring, anything you want to tag.
+	 */
+	public String ringName;
 
-	/** Ring name */
-	private String ringName;
+	/**
+	 * Words of this ring.
+	 */
+	public List<String> words;
 
-	/** Words in this ring */
-	private List<String> words;
+	/**
+	 * Indicate each word is horizontal or vertical.
+	 */
+	public boolean isHorizontalWord;
 
-	/** Word is in horizontal or vertical */
-	private boolean isHorizontalWord;
+	/**
+	 * Indicate each word is curved or straight when drawing.
+	 */
+	public boolean isCurvedWord;
 
-	/** Word is curved or straight */
-	private boolean isCurvedWord;
+	/**
+	 * Indicate each word is normal, uppercase or lowercase. Value is one of
+	 * {Character.UNASSIGNED, Character.UPPERCASE_LETTER or Character.LOWERCASE_LETTER}.
+	 */
+	public int wordCase;
 
-	/** Word is normal, uppercase or lowercase */
-	private int wordCase;
+	/**
+	 * Indicate each word is normal, bold or italic.
+	 */
+	public int wordStyle;
 
-	/** Word is normal, bold, italic */
-	private int wordStyle;
+	/**
+	 * Font size of each word.
+	 */
+	public int wordFontSize;
 
-	/** Font size of a word */
-	private int wordFontSize = DEFAULT_WORD_FONT_SIZE;
-
-	/** Number of characters will be shown from left for each word */
-	private int shownCharCount;
-
-	public void setWordCase(int wordCase) {
-		switch (wordCase) {
-			case UPPERCASE_LETTER:
-				this.wordCase = UPPERCASE_LETTER;
-				break;
-			case LOWERCASE_LETTER:
-				this.wordCase = LOWERCASE_LETTER;
-				break;
-		}
-	}
+	/**
+	 * Number of characters will be shown from left of each word when drawing.
+	 */
+	public int shownCharCount;
 
 	public boolean isWordUpperCase() {
 		return wordCase == UPPERCASE_LETTER;
@@ -77,53 +84,13 @@ public class DkRing {
 	public float getRotatedDegrees() {
 		return rotatedDegrees;
 	}
-	public String getRingName() {
-		return ringName;
-	}
 	public boolean isHorizontalWord() {
 		return isHorizontalWord;
-	}
-	public boolean isCurvedWord() {
-		return isCurvedWord;
-	}
-	public int getWordStyle() {
-		return wordStyle;
-	}
-	public int getWordFontSize() {
-		return wordFontSize;
 	}
 	public int getShownCharCount() {
 		return shownCharCount;
 	}
 	public boolean isVisible() {
 		return isVisible;
-	}
-
-	public void setWordStyle(int wordStyle) {
-		this.wordStyle = wordStyle;
-	}
-	public void setRotatedDegrees(float rotatedDegrees) {
-		this.rotatedDegrees = rotatedDegrees;
-	}
-	public void setRingName(String ringName) {
-		this.ringName = ringName;
-	}
-	public void setWords(List<String> words) {
-		this.words = words;
-	}
-	public void setHorizontalWord(boolean horizontalWord) {
-		isHorizontalWord = horizontalWord;
-	}
-	public void setCurvedWord(boolean curvedWord) {
-		isCurvedWord = curvedWord;
-	}
-	public void setWordFontSize(int wordFontSize) {
-		this.wordFontSize = wordFontSize;
-	}
-	public void setShownCharCount(int shownCharCount) {
-		this.shownCharCount = shownCharCount;
-	}
-	public void setVisible(boolean visible) {
-		isVisible = visible;
 	}
 }

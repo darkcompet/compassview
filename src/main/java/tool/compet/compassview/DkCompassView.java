@@ -55,7 +55,9 @@ public class DkCompassView extends View implements DkDoubleFingerDetector.Listen
 	public static final int MODE_NORMAL = 0;
 	public static final int MODE_ROTATE = 1;
 	public static final int MODE_POINT = 2;
-	
+
+	private static final float DEFAULT_WORD_TEXT_SIZE = DkTextViews.calcTextSize(12);
+
 	private final Context context;
 
 	private CompassController compassHelper;
@@ -174,14 +176,13 @@ public class DkCompassView extends View implements DkDoubleFingerDetector.Listen
 		tmpPaint.setStyle(Paint.Style.STROKE);
 
 		textPaint = tmpPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
-		tmpPaint.setTextSize(DkTextViews.calcTextSize(DkRing.DEFAULT_WORD_FONT_SIZE));
+		tmpPaint.setTextSize(DEFAULT_WORD_TEXT_SIZE);
 
 		fillPaint = tmpPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
 		tmpPaint.setStrokeWidth(3);
 		tmpPaint.setStyle(Paint.Style.FILL_AND_STROKE);
 
-		detector = new DkDoubleFingerDetector(context);
-		detector.setListener(this);
+		detector = new DkDoubleFingerDetector(context, this);
 
 		setOnTouchListener(this);
 	}
@@ -630,7 +631,7 @@ public class DkCompassView extends View implements DkDoubleFingerDetector.Listen
 		final Paint textPaint = this.textPaint;
 		final Rect tmpRect = this.tmpRect;
 
-		textPaint.setTextSize(DkTextViews.calcTextSize(DkRing.DEFAULT_WORD_FONT_SIZE));
+		textPaint.setTextSize(DEFAULT_WORD_TEXT_SIZE);
 		textPaint.getTextBounds(defaultText, 0, defaultText.length(), tmpRect);
 		final int defaultSpace = tmpRect.height();
 		final int rayPadding = Math.max(4, defaultSpace >> 2);
@@ -669,7 +670,7 @@ public class DkCompassView extends View implements DkDoubleFingerDetector.Listen
 				}
 
 				// word font size should between [1, 100]
-				int wordFontSize = Math.max(1, Math.min(100, ring.getWordFontSize()));
+				int wordFontSize = Math.max(1, Math.min(100, ring.wordFontSize));
 
 				float ringTextSize = DkTextViews.calcTextSize(wordFontSize) - time;
 				if (ringTextSize < 1) {
@@ -743,7 +744,7 @@ public class DkCompassView extends View implements DkDoubleFingerDetector.Listen
 		}
 
 		// calculate radius for 36 angles
-		textPaint.setTextSize(DkTextViews.calcTextSize(DkRing.DEFAULT_WORD_FONT_SIZE));
+		textPaint.setTextSize(DEFAULT_WORD_TEXT_SIZE);
 		textPaint.getTextBounds(defaultText, 0, defaultText.length(), tmpRect);
 		float sumLength = 36 * (tmpRect.width() + (rayPadding << 1));
 		float justNeedLength = (float) (sumLength / 2 / Math.PI + tmpRect.width());
@@ -854,7 +855,7 @@ public class DkCompassView extends View implements DkDoubleFingerDetector.Listen
 				continue;
 			}
 			textPaint.setTextSize(wordTextSizes[ringInd]);
-			textPaint.setTypeface(Typeface.create(Typeface.DEFAULT, ring.getWordStyle()));
+			textPaint.setTypeface(Typeface.create(Typeface.DEFAULT, ring.wordStyle));
 			float defaultRotateDegrees = ring.getRotatedDegrees();
 			List<String> words = ring.getWords();
 
@@ -872,7 +873,7 @@ public class DkCompassView extends View implements DkDoubleFingerDetector.Listen
 			canvas.save();
 			canvas.rotate(defaultRotateDegrees, cmpSemiWidth, cmpSemiHeight);
 			boolean isHorizontal = ring.isHorizontalWord();
-			boolean isCurveText = ring.isCurvedWord();
+			boolean isCurveText = ring.isCurvedWord;
 			float fixedWordRangeDegrees = 360f / wordCnt;
 			Path path = new Path();
 			path.addCircle(cmpSemiWidth, cmpSemiHeight, belowRayRadius + rayPadding, Path.Direction.CW);
@@ -942,7 +943,7 @@ public class DkCompassView extends View implements DkDoubleFingerDetector.Listen
 		}
 
 		// Step 4. restore default settings
-		textPaint.setTextSize(DkTextViews.calcTextSize(DkRing.DEFAULT_WORD_FONT_SIZE));
+		textPaint.setTextSize(DEFAULT_WORD_TEXT_SIZE);
 		textPaint.setTypeface(Typeface.create(Typeface.DEFAULT, Typeface.NORMAL));
 
 		return compass;

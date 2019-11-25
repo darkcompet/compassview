@@ -61,7 +61,7 @@ class CompassController {
 			final int wordCnt = words.size();
 			double delta = 360.0 / wordCnt;
 			double offset = DkCompasses.calcDisplayAngle(-delta / 2 + rotateDegrees);
-			String ringName = ring.getRingName();
+			String ringName = ring.ringName;
 
 			for (int i = 0; i < wordCnt; ++i) {
 				String word = words.get(i);
